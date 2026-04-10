@@ -5,6 +5,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using UrlShortenerAPI.Data;
+using UrlShortenerAPI.Middlewares;
+using UrlShortenerAPI.Repositories;
+using UrlShortenerAPI.Services;
 
 namespace UrlShortenerAPI
 {
@@ -22,6 +25,13 @@ namespace UrlShortenerAPI
             // Database Configuration
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // DI 
+            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IUrlRepository, UrlRepository>();
+            builder.Services.AddScoped<IUrlService, UrlService>();
+
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
             // Authentication & JWT Configuration
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -98,6 +108,7 @@ namespace UrlShortenerAPI
             app.UseRouting();
             app.UseCors("AllowAll");
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseAuthentication(); // Who are you?
             app.UseAuthorization();  // Are you allowed?
 
