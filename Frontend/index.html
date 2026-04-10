@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShortLink | URL Shortener</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-link"></i> ShortLink
+            </div>
+            <div id="user-menu" class="hidden">
+                <span id="user-greeting"></span>
+                <button id="logout-btn" class="btn-text">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section id="auth-section" class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2 id="auth-title">Sign In</h2>
+                    <p id="auth-subtitle">Welcome back! Please enter your details.</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button class="tab active" onclick="toggleAuthMode('login')">Login</button>
+                    <button class="tab" onclick="toggleAuthMode('register')">Register</button>
+                </div>
+
+                <form id="auth-form">
+                    <div id="register-fields" class="hidden">
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" id="reg-name" placeholder="John Doe">
+                        </div>
+                        <div class="input-group">
+                            <label>Username</label>
+                            <input type="text" id="reg-username" placeholder="johndoe123">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="auth-email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="auth-password" placeholder="••••••••" required minlength="6">
+                    </div>
+
+                    <button type="submit" class="btn-primary w-full" id="auth-submit-btn">
+                        <span>Sign In</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="dashboard-section" class="hidden">
+            <div class="hero">
+                <h1>Make every connection count</h1>
+                <p>Create short, reliable links to share anywhere.</p>
+
+                <form id="shorten-form" class="shorten-box">
+                    <i class="fa-solid fa-link input-icon"></i>
+                    <input type="url" id="long-url" placeholder="Paste your long URL here (https://...)" required>
+                    <button type="submit" class="btn-primary" id="shorten-btn">
+                        <span>Shorten</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="links-container">
+                <div class="links-header">
+                    <h3>Your Links</h3>
+                </div>
+                <div id="urls-list" class="urls-list">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden">
+        <i id="toast-icon" class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">Message</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
