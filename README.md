@@ -141,3 +141,37 @@ UrlShortenerAPI/
 - URL deduplication — return existing code if same URL shortened twice
 - Rate limiting — prevent abuse
 - Admin dashboard
+
+---
+> *Note: This repository primarily focuses on robust Backend architecture. 
+  The included Frontend is an AI-assisted prototype designed purely to demonstrate and consume the API's capabilities in a real-world scenario.*
+
+## 🖥️ Frontend Application
+
+The repository includes a fully functional, premium Single Page Application (SPA) built to interact seamlessly with the API. 
+
+### Frontend Features
+- **Modern UI/UX:** Clean aesthetic with soft shadows, smooth transitions, and a mobile-responsive layout.
+- **Vanilla Power:** Built entirely without heavy frameworks (No React, No Angular) to demonstrate strong core web fundamentals.
+- **Dynamic State Management:** Handles JWT persistence, login/register toggling, and UI state securely on the client side.
+- **Instant Copy:** Utilizes the modern `navigator.clipboard` API for one-click short URL copying.
+- **Toast Notifications:** Custom-built sliding toast system for real-time user feedback (success/error handling).
+- **Graceful Error Handling:** Catches ASP.NET Core validation errors and displays them neatly to the user instead of generic failure messages.
+
+### Frontend Tech Stack
+- HTML5 (Semantic Structure)
+- CSS3 (CSS Variables, Flexbox, Custom Animations)
+- Vanilla JavaScript (ES6+, Async/Await, Fetch API)
+- FontAwesome 6 (Icons)
+- Google Fonts (Inter)
+
+### Running the Frontend Locally
+
+Since the frontend is built with vanilla web technologies, it requires no node modules, build steps, or bundlers.
+
+1. Ensure backend API is running (e.g., on `https://localhost:7174`).
+2. Navigate to the `Frontend` folder.
+3. Open `app.js` and verify the `BACKEND_URL` matches your local API port:
+   ```javascript
+     const BACKEND_URL = 'https://localhost:7174'; // Update this if your port differs
+   ```
